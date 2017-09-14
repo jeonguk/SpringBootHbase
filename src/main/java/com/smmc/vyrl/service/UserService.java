@@ -6,6 +6,7 @@ import com.smmc.vyrl.rowmapper.UserRowMapper;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,15 @@ public class UserService {
     private HbaseTemplate hbaseTemplate;
 
     // Table info
-    final String tableName = "user_table";
-    final String columnFamilyData = "data";
+    private TableName tableName = TableName.valueOf("user_table");
+    private final String columnFamily1 = "Family1";
+    private final String columnFamily2 = "Family2";
+
+    private final byte[] firstName = Bytes.toBytes("firstName");
+    private final byte[] lastName = Bytes.toBytes("lastName");
+    private final byte[] email = Bytes.toBytes("email");
+    private final byte[] address = Bytes.toBytes("address");
+    private final byte[] follow = Bytes.toBytes("follow");
 
     public void createTable() throws Exception {
         HBaseAdmin admin = new HBaseAdmin(hbaseAutoConfiguration);
@@ -36,10 +44,9 @@ public class UserService {
             //admin.deleteTable(tableName);
             System.out.println("Table Already Created");
         } else {
-
-            HTableDescriptor tableDes = new HTableDescriptor(Bytes.toBytes(tableName));
-            HColumnDescriptor cf1 = new HColumnDescriptor(Bytes.toBytes(columnFamilyData));
-            tableDes.addFamily(cf1);
+            HTableDescriptor tableDes = new HTableDescriptor(tableName);
+            tableDes.addFamily(new HColumnDescriptor(columnFamily1));
+            tableDes.addFamily(new HColumnDescriptor(columnFamily2));
             admin.createTable(tableDes);
         }
     }
@@ -63,11 +70,12 @@ public class UserService {
         // create a put with row key
         Put p = new Put(Bytes.toBytes("jeonguk" + timestamp.getTime()));
         //add row value
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("firstName"), Bytes.toBytes("JEONGUK"));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("lastName"), Bytes.toBytes("LEE" ));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("email"), Bytes.toBytes("jeonguk@gmail.com"));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("address"), Bytes.toBytes("Seoul Korea"));
-        //p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("age"), Bytes.toBytes("25"));
+        p.addImmutable(columnFamily1.getBytes(), firstName, Bytes.toBytes("JEONGUK"));
+        p.addImmutable(columnFamily1.getBytes(), lastName, Bytes.toBytes("LEE" ));
+        p.addImmutable(columnFamily1.getBytes(), email, Bytes.toBytes("jeonguk@gmail.com"));
+        p.addImmutable(columnFamily1.getBytes(), address, Bytes.toBytes("Seoul Korea"));
+
+        p.addImmutable(columnFamily2.getBytes(), follow, Bytes.toBytes("LEE JOENGUK"));
 
         puts.add(p);
         // 设值
@@ -80,10 +88,12 @@ public class UserService {
         // create a put with row key
         Put p = new Put(Bytes.toBytes("jeonguk" + timestamp.getTime()));
         //add row value
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("firstName"), Bytes.toBytes("JEONGUK"));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("lastName"), Bytes.toBytes("LEE" ));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("email"), Bytes.toBytes("jeonguk@gmail.com"));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("address"), Bytes.toBytes("Seoul Korea"));
+        p.addImmutable(columnFamily1.getBytes(), firstName, Bytes.toBytes("JEONGUK"));
+        p.addImmutable(columnFamily1.getBytes(), lastName, Bytes.toBytes("LEE" ));
+        p.addImmutable(columnFamily1.getBytes(), email, Bytes.toBytes("jeonguk@gmail.com"));
+        p.addImmutable(columnFamily1.getBytes(), address, Bytes.toBytes("Seoul Korea"));
+
+        p.addImmutable(columnFamily2.getBytes(), follow, Bytes.toBytes("LEE JOENGUK"));
 
         // 设值
         this.hbaseTemplate.saveOrUpdate("user_table", p);

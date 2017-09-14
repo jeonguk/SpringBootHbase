@@ -7,6 +7,8 @@ public class User {
     private String email;     // optional
     private String address;   // optional
 
+    private String follow;
+
     public User() {
     }
 
@@ -46,4 +48,12 @@ public class User {
         return this;
     }
 
+    public String getFollow() {
+        return follow;
+    }
+
+    public User setFollow(String follow) {
+        this.follow = follow;
+        return this;
+    }
 }
