@@ -39,7 +39,7 @@ $ cd $HBASE_HOME
 $ vi conf/hbase-site.xml
 ```
 
-<pre>
+<code>
 
 <!-- conf/hbase-site.xml 내용 -->
 <configuration>
@@ -69,7 +69,7 @@ $ vi conf/hbase-site.xml
   </property>
 </configuration>
 
-</pre>
+</code>
 
 ### 6. 데이터 저장소 경로 생성
 ```
