@@ -37,7 +37,8 @@ $ export PATH=$PATH:$JAVA_HOME/bin:$HBASE_HOME/bin
 $ cd $HBASE_HOME
 $ vi conf/hbase-site.xml
 ```
-```
+
+~~~ xml
 <!-- conf/hbase-site.xml 내용 -->
 <configuration>
   <property>
@@ -65,7 +66,7 @@ $ vi conf/hbase-site.xml
     <value>simple</value>
   </property>
 </configuration>
-```
+~~~
 
 ### 6. 데이터 저장소 경로 생성
 ```
