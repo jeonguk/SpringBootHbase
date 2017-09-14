@@ -1,4 +1,5 @@
 # SpringBootHbase
+- hbase remote call 
 
 ```
 - Oracle VM
@@ -87,4 +88,6 @@ $ ./bin/hbase shell
 hbase(main):013:0> quit
 ```
 
+
+## * 서버 host와 localhost를 맞춰서 수정
 
