@@ -39,37 +39,8 @@ $ cd $HBASE_HOME
 $ vi conf/hbase-site.xml
 ```
 
-<code>
+![Alt text](https://user-images.githubusercontent.com/1449153/30422158-0d8e8ae6-997a-11e7-97b1-81544d186585.png "hbae-site")
 
-<!-- conf/hbase-site.xml 내용 -->
-<configuration>
-  <property>
-    <name>hbase.rootdir</name>
-    <value>file:///home/hadoop/dataRepository</value>
-  </property>
-  <property>
-    <name>hbase.zookeeper.property.dataDir</name>
-    <value>/home/hadoop/zookeeper</value>
-  </property>
-  <property>
-    <name>hbase.zookeeper.quorum</name>
-    <value>192.168.56.101</value>
-  </property>
-  <property>
-    <name>hbase.zookeeper.property.clientPort</name>
-    <value>2181</value>
-  </property>
-  <property>
-    <name>zookeeper.znode.parent</name>
-    <value>/home/hadoop/hbase-unsecure</value>
-  </property>
-  <property>
-    <name>zookeeper.security.authentication</name>
-    <value>simple</value>
-  </property>
-</configuration>
-
-</code>
 
 ### 6. 데이터 저장소 경로 생성
 ```
