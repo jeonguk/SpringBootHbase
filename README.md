@@ -38,7 +38,7 @@ $ cd $HBASE_HOME
 $ vi conf/hbase-site.xml
 ```
 
-~~~ xml
+~~~xml
 <!-- conf/hbase-site.xml 내용 -->
 <configuration>
   <property>
