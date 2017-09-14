@@ -3,10 +3,10 @@
 ```
 - Oracle VM
 - CentOS 6.9
+```
 
 ### HBase Standalone 설치 &  사용법
 
-```
 $ wget http://apache.mirror.cdnetworks.com/hbase/stable/hbase-1.2.6-bin.tar.gz
 
 2. 압축 해제 및 /usr/local에 복사 설치
