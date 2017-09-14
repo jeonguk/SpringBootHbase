@@ -53,7 +53,7 @@ public class HbaseTemplate implements HbaseOperations {
                 try {
                     table.close();
                     sw.stop();
-                    LOGGER.info(EventLog.buildEventLog(EventType.middleware_opt, MiddleWare.HBASE.symbol(), sw.getTotalTimeMillis(), status, "hbase请求").toString());
+                    LOGGER.info(EventLog.buildEventLog(EventType.middleware_opt, MiddleWare.HBASE.symbol(), sw.getTotalTimeMillis(), status, "hbase request").toString());
                 } catch (IOException e) {
                     LOGGER.error("hbase resources release fail");
                 }
