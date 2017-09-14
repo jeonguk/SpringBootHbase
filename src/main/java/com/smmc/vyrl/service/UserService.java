@@ -63,8 +63,10 @@ public class UserService {
         // create a put with row key
         Put p = new Put(Bytes.toBytes("jeonguk" + timestamp.getTime()));
         //add row value
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("firstName"), Bytes.toBytes("JEONGUK" + timestamp.getTime()));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("lastName"), Bytes.toBytes("LEE" + timestamp.getTime()));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("firstName"), Bytes.toBytes("JEONGUK"));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("lastName"), Bytes.toBytes("LEE" ));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("email"), Bytes.toBytes("jeonguk@gmail.com"));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("address"), Bytes.toBytes("Seoul Korea"));
         //p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("age"), Bytes.toBytes("25"));
 
         puts.add(p);
@@ -78,9 +80,10 @@ public class UserService {
         // create a put with row key
         Put p = new Put(Bytes.toBytes("jeonguk" + timestamp.getTime()));
         //add row value
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("firstName"), Bytes.toBytes("JEONGUK" + timestamp.getTime()));
-        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("lastName"), Bytes.toBytes("LEE" + timestamp.getTime()));
-        //p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("age"), Bytes.toBytes("25"));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("firstName"), Bytes.toBytes("JEONGUK"));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("lastName"), Bytes.toBytes("LEE" ));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("email"), Bytes.toBytes("jeonguk@gmail.com"));
+        p.addColumn(Bytes.toBytes("data"), Bytes.toBytes("address"), Bytes.toBytes("Seoul Korea"));
 
         // 设值
         this.hbaseTemplate.saveOrUpdate("user_table", p);
