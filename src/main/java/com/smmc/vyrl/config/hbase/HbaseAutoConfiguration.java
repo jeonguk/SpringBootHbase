@@ -4,6 +4,7 @@ import com.smmc.vyrl.config.hbase.api.HbaseTemplate;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.conf.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -39,5 +40,15 @@ public class HbaseAutoConfiguration {
         configuration.set(HBASE_ROOTDIR, this.hbaseProperties.getRootDir());
         configuration.set(HBASE_ZNODE_PARENT, this.hbaseProperties.getNodeParent());
         return  configuration;
+    }
+
+    @Bean
+    @Qualifier("originalHbaseTemplate")
+    org.springframework.data.hadoop.hbase.HbaseTemplate baseTemplate() {
+        Configuration conf = HBaseConfiguration.create();
+        conf.set(HBASE_QUORUM, this.hbaseProperties.getQuorum());
+        conf.set(HBASE_ROOTDIR, this.hbaseProperties.getRootDir());
+        conf.set(HBASE_ZNODE_PARENT, this.hbaseProperties.getNodeParent());
+        return new org.springframework.data.hadoop.hbase.HbaseTemplate(conf);
     }
 }
