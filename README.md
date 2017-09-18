@@ -31,8 +31,8 @@ chown -R hadoop.hadoop habase-1.2.6
 ### 4. .bash_profile에 JAVA_HOME과 HBASE_HOME 설정
 ```
 $ su - hadoop
-$ export JAVA_HOME=/usr/java/jsk1.8.0_60
-$ export HBASE_HOME=/usr/local/hbase-1.1.5
+$ export JAVA_HOME=/usr/java/jdk1.8
+$ export HBASE_HOME=/usr/local/hbase-1.2.6
 $ export PATH=$PATH:$JAVA_HOME/bin:$HBASE_HOME/bin
 ```
 ### 5. HBase의 설정 편집
